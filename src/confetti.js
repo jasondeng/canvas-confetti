@@ -185,6 +185,7 @@
     y: 0.5,
     shapes: ["square", "circle"],
     zIndex: 100,
+    emojiSize: 3,
     colors: [
       "#26ccff",
       "#a25afd",
@@ -377,6 +378,7 @@
             2 * Math.PI
           );
     } else if (fetti.shape.substring(0, 6) === "emoji:") {
+      context.font = fetti.emojiSize + "px serif";
       context.fillText(fetti.shape.substring(6), fetti.x, fetti.y);
     } else {
       context.moveTo(Math.floor(fetti.x), Math.floor(fetti.y));
@@ -385,7 +387,6 @@
       context.lineTo(Math.floor(x1), Math.floor(fetti.wobbleY));
     }
 
-    context.font = "3em Arial";
     context.closePath();
     context.fill();
 
@@ -492,6 +493,7 @@
       var ticks = prop(options, "ticks", Number);
       var shapes = prop(options, "shapes");
       var scalar = prop(options, "scalar");
+      var emojiSize = prop(options, "emojiSize");
       var origin = getOrigin(options);
 
       var temp = particleCount;
@@ -511,6 +513,7 @@
             color: colors[temp % colors.length],
             shape: shapes[randomInt(0, shapes.length)],
             ticks: ticks,
+            emojiSize: emojiSize,
             decay: decay,
             gravity: gravity,
             drift: drift,
