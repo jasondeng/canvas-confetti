@@ -176,19 +176,6 @@
     return str.substring(0, 6) === "emoji:";
   };
 
-  var generateRandomNumber = function (min, max, fractionDigits) {
-    if (typeof fractionDigits === "undefined") {
-      fractionDigits = 0;
-    }
-
-    var randomNumber = Math.random() * (max - min) + min;
-
-    return (
-      Math.floor(Math.pow(randomNumber * 10, fractionDigits)) /
-      Math.pow(10, fractionDigits)
-    );
-  };
-
   var defaults = {
     particleCount: 50,
     angle: 90,
@@ -395,14 +382,15 @@
             2 * Math.PI
           );
     } else if (isEmoji(fetti.shape)) {
-      var emojiRotationAngle = generateRandomNumber(0, 2 * Math.PI);
+      var emoji = fetti.shape.substring(6);
+      var emojiWidth = context.measureText(emoji).width;
 
       context.font = "3em Arial";
       context.save();
       context.translate(fetti.x, fetti.y);
-      context.rotate(emojiRotationAngle);
+      context.rotate(-Math.PI / 2);
       context.textAlign = "center";
-      context.fillText(fetti.shape.substring(6), 0, 0);
+      context.fillText(emoji, emojiWidth / 2, 4);
       context.restore();
     } else {
       context.moveTo(Math.floor(fetti.x), Math.floor(fetti.y));
