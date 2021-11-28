@@ -172,6 +172,23 @@
     };
   })();
 
+  var isEmoji = function (str) {
+    str.substring(0, 6) === "emoji:";
+  };
+
+  var generateRandomNumber = function (min, max, fractionDigits) {
+    if (typeof fractionDigits === "undefined") {
+      fractionDigits = 0;
+    }
+
+    var randomNumber = Math.random() * (max - min) + min;
+
+    return (
+      Math.floor(Math.pow(randomNumber * 10, fractionDigits)) /
+      Math.pow(10, fractionDigits)
+    );
+  };
+
   var defaults = {
     particleCount: 50,
     angle: 90,
@@ -377,9 +394,16 @@
             0,
             2 * Math.PI
           );
-    } else if (fetti.shape.substring(0, 6) === "emoji:") {
+    } else if (isEmoji(fetti.shape)) {
+      var emojiRotationAngle = generateRandomNumber(0, 2 * Math.PI);
+
       context.font = fetti.emojiSize + "px serif";
-      context.fillText(fetti.shape.substring(6), fetti.x, fetti.y);
+      context.save();
+      context.translate(fetti.x, fetti.y);
+      context.rotate(emojiRotationAngle);
+      context.textAlign = "center";
+      context.fillText(fetti.shape.substring(6), 0, 0);
+      context.restore();
     } else {
       context.moveTo(Math.floor(fetti.x), Math.floor(fetti.y));
       context.lineTo(Math.floor(fetti.wobbleX), Math.floor(y1));
