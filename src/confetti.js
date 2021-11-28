@@ -376,6 +376,8 @@
             0,
             2 * Math.PI
           );
+    } else if (fetti.shape.substring(0, 6) === "emoji:") {
+      context.fillText(fetti.shape.substring(6), fetti.x, fetti.y);
     } else {
       context.moveTo(Math.floor(fetti.x), Math.floor(fetti.y));
       context.lineTo(Math.floor(fetti.wobbleX), Math.floor(y1));
@@ -383,6 +385,7 @@
       context.lineTo(Math.floor(x1), Math.floor(fetti.wobbleY));
     }
 
+    context.font = "3em Arial";
     context.closePath();
     context.fill();
 
