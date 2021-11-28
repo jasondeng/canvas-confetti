@@ -173,7 +173,7 @@
   })();
 
   var isEmoji = function (str) {
-    str.substring(0, 6) === "emoji:";
+    return str.substring(0, 6) === "emoji:";
   };
 
   var generateRandomNumber = function (min, max, fractionDigits) {
