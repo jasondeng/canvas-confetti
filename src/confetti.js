@@ -397,7 +397,7 @@
     } else if (isEmoji(fetti.shape)) {
       var emojiRotationAngle = generateRandomNumber(0, 2 * Math.PI);
 
-      context.font = fetti.emojiSize + "px serif";
+      context.font = "3em Arial";
       context.save();
       context.translate(fetti.x, fetti.y);
       context.rotate(emojiRotationAngle);
