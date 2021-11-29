@@ -314,6 +314,7 @@
       tiltAngle: (Math.random() * (0.75 - 0.25) + 0.25) * Math.PI,
       color: opts.color,
       shape: opts.shape,
+      emojiSize: opts.emojiSize,
       tick: 0,
       totalTicks: opts.ticks,
       decay: opts.decay,
@@ -385,7 +386,7 @@
       var emoji = fetti.shape.substring(6);
       var emojiWidth = context.measureText(emoji).width;
 
-      context.font = "3em Arial";
+      context.font = fetti.emojiSize + "em Arial";
       context.textAlign = "center";
       context.save();
       context.translate(fetti.x, fetti.y);
