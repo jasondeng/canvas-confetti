@@ -387,18 +387,11 @@
 
       context.font = "3em Arial";
       context.textAlign = "center";
+      context.save();
+      context.translate(fetti.x, fetti.y);
+      context.rotate((Math.PI / 10) * fetti.wobble);
       context.fillText(emoji, emojiWidth / 2, 4);
-
-      ellipse(
-        context,
-        fetti.x,
-        fetti.y,
-        Math.abs(x2 - x1) * fetti.ovalScalar,
-        Math.abs(y2 - y1) * fetti.ovalScalar,
-        (Math.PI / 10) * fetti.wobble,
-        0,
-        2 * Math.PI
-      );
+      context.restore();
     } else {
       context.moveTo(Math.floor(fetti.x), Math.floor(fetti.y));
       context.lineTo(Math.floor(fetti.wobbleX), Math.floor(y1));
